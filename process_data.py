@@ -3,8 +3,9 @@ import click
 
 
 @click.command()
-def main():
-    conversations = proc.read_data('../data/raw/conversation.txt')
+@click.option('--conversation_file', default='conversation')
+def main(conversation_file):
+    conversations = proc.read_data(f'../data/raw/{conversation_file}.txt')
     conversations_by_participants = proc.separate_conversation_by_participants(conversations)
     conversations_by_participants = proc.tidy_sentences(conversations_by_participants)
 
